@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Font Control</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Change Text & Border Color</h1>
+    <p id="text">This is some sample text.</p>
+
+    <label>R: <input type="number" id="red" min="0" max="255"></label>
+    <label>G: <input type="number" id="green" min="0" max="255"></label>
+    <label>B: <input type="number" id="blue" min="0" max="255"></label>
+    <label>Border Width: <input type="number" id="borderWidth" min="1" max="10"></label>
+
+    <button onclick="changeStyle()">Apply</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
