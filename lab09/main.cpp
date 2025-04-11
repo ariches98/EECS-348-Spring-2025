@@ -1,6 +1,8 @@
 #include "Matrix.hpp"
 #include <fstream>
 #include <memory>
+#include <limits>
+
 
 int main() {
     std::string filename;
@@ -54,11 +56,23 @@ int main() {
             std::cout << "Select an option: ";
             std::cin >> choice;
 
-            int matrixChoice;
+            int matrixChoice = -1;
             if (choice >= '1' && choice <= '3') {
-                std::cout << "Edit Matrix A (0) or B (1)? ";
-                std::cin >> matrixChoice;
+                while (true) {
+                    std::cout << "Edit Matrix A (0) or B (1)? ";
+                    std::cin >> matrixChoice;
+
+                    if (std::cin.fail() || (matrixChoice != 0 && matrixChoice != 1)) {
+                        std::cin.clear(); // clear failbit
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cerr << "Invalid input. Please enter 0 for A or 1 for B.\n";
+                    }
+                    else {
+                        break;
+                    }
+                }
             }
+
 
             int r1, r2, c1, c2;
             int row, col;
@@ -78,11 +92,16 @@ int main() {
                 else B.swapCols(c1, c2);
                 break;
             case '3':
-                std::cout << "Enter row col and new value: ";
-                std::cin >> row >> col >> newVal;
-                if (matrixChoice == 0) A.updateElement(row, col, newVal);
-                else B.updateElement(row, col, newVal);
-                break;
+                while (true) {
+                    std::cout << "Enter row, col, and new value: ";
+                    if (std::cin >> row >> col >> newVal)
+                        break;
+
+                    std::cin.clear(); // clear fail bit
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    std::cerr << "Invalid input. Please enter three values.\n";
+                }
+
             case '4':
                 A.print();
                 break;
@@ -127,11 +146,23 @@ int main() {
             std::cout << "Select an option: ";
             std::cin >> choice;
 
-            int matrixChoice;
+            int matrixChoice = -1;
             if (choice >= '1' && choice <= '3') {
-                std::cout << "Edit Matrix A (0) or B (1)? ";
-                std::cin >> matrixChoice;
+                while (true) {
+                    std::cout << "Edit Matrix A (0) or B (1)? ";
+                    std::cin >> matrixChoice;
+
+                    if (std::cin.fail() || (matrixChoice != 0 && matrixChoice != 1)) {
+                        std::cin.clear(); // clear failbit
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // discard invalid input
+                        std::cerr << "Invalid input. Please enter 0 for A or 1 for B.\n";
+                    }
+                    else {
+                        break;
+                    }
+                }
             }
+
 
             int r1, r2, c1, c2;
             int row, col;
@@ -151,11 +182,16 @@ int main() {
                 else B.swapCols(c1, c2);
                 break;
             case '3':
-                std::cout << "Enter row col and new value: ";
-                std::cin >> row >> col >> newVal;
-                if (matrixChoice == 0) A.updateElement(row, col, newVal);
-                else B.updateElement(row, col, newVal);
-                break;
+                while (true) {
+                    std::cout << "Enter row, col, and new value: ";
+                    if (std::cin >> row >> col >> newVal)
+                        break;
+
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    std::cerr << "Invalid input. Please enter three values.\n";
+                }
+
             case '4':
                 A.print();
                 break;
