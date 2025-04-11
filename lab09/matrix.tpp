@@ -67,23 +67,35 @@ T Matrix<T>::diagonalSum() const {
 // Swap rows
 template<typename T>
 void Matrix<T>::swapRows(int row1, int row2) {
-    if (row1 >= 0 && row2 >= 0 && row1 < size && row2 < size)
+    if (row1 >= 0 && row2 >= 0 && row1 < size && row2 < size) {
         std::swap(data[row1], data[row2]);
+    } else {
+        std::cerr << "Error: Invalid row indices (" << row1 << ", " << row2 << ").\n";
+    }
 }
+
 
 // Swap columns
 template<typename T>
 void Matrix<T>::swapCols(int col1, int col2) {
-    if (col1 >= 0 && col2 >= 0 && col1 < size && col2 < size)
+    if (col1 >= 0 && col2 >= 0 && col1 < size && col2 < size) {
         for (int i = 0; i < size; ++i)
             std::swap(data[i][col1], data[i][col2]);
+    } else {
+        std::cerr << "Error: Invalid column indices (" << col1 << ", " << col2 << ").\n";
+    }
 }
+
 
 // Update element
 template<typename T>
 void Matrix<T>::updateElement(int row, int col, T value) {
-    if (row >= 0 && col >= 0 && row < size && col < size)
+    if (row >= 0 && col >= 0 && row < size && col < size) {
         data[row][col] = value;
+    } else {
+        std::cerr << "Error: Invalid indices (" << row << ", " << col << ") for update.\n";
+    }
 }
+
 
 #endif
